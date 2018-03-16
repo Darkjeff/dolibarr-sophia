@@ -95,7 +95,8 @@ function csv_to_array($filename, $delimiter=';')
 		//var_dump($lines);
 		foreach($lines as $key => $value){
 			// var_dump($line);
-			
+			$value['Total TTC'] = (float) str_replace(',', '.', $value['Total TTC']);
+			// var_dump($value['Total TTC']);die;	
 			// var_dump($value['Facturé le']);die;
 			if(empty($value['Référence client'])){
 				continue;
@@ -123,8 +124,7 @@ function csv_to_array($filename, $delimiter=';')
 				$code_inv_error[$value['Numéro de facture']] = $value['Numéro de facture'];
 				$error = true;
 				continue;
-			}
-						
+			}	
 			$data[$value['Numéro de facture']] = array( 
 								'societe_id' => $societe_id,
 								'n_fact' => $value['Numéro de facture'],
